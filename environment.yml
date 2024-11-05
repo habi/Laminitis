@@ -1,16 +1,26 @@
-name: vetsuisse
+name: laminitis
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
   - jupyterlab
   - ipywidgets
-  - pandas
+  - numpy<2
+  - dask-labextension  
   - dask
   - dask-image  
+  - imageio
+  - zarr
+  - numcodecs  
+  - pandas
   - matplotlib
   - matplotlib-scalebar
   - seaborn
   - tqdm
   - openpyxl  
   - tabulate
+  - skan
+  - napari
+  - pip
+  - pip:
+    - flake8
+    - pycodestyle_magic
