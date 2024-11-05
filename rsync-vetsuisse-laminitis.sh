@@ -1,8 +1,11 @@
-echo "2214 -> archive"
-rsync --verbose --recursive --update --times --omit-dir-times --include="*/" --include="*.?og" --include="*.c?v" --include="*.?oi" --include="*.?at" --include="*_spr*.bmp" --include="*.txt" --include="*.md" --include="*.sb" --include="*.info" --include="*.?nc" --include="*.bkp" --include="*.?if" --exclude="*" ~/2214/VETSUISSE/ ~/research-storage-uct/Archiv_Tape/VETSUISSE/
-echo "Log files and stuff on 2214 -> Repository subfolder"
-rsync --verbose --recursive --update --times --omit-dir-times --include="*/" --include="*.?og" --include="*.c?v" --include="*.?oi" --include="*.txt" --include="*.md" --include="*.?nc" --exclude="*" ~/2214/VETSUISSE/ /home/habi/P/Documents/VETSUISSE/Laminitis/logfiles/
-echo "2214 -> FastSSD anaklin25"
-rsync --verbose --recursive --update --times --omit-dir-times --include="*/" --include="*.?og" --include="*.c?v" --include="*.?oi" --include="*.?at" --include="*_spr*.bmp" --include="*.txt" --include="*.md" --include="*.sb" --include="*.info" --include="*.?nc" --include="*.bkp" --include="*.png" --exclude="*" ~/2214/VETSUISSE/ /media/habi/Fast_SSD/VETSUISSE/
-echo "2214 -> FastSSD anaklin04"
-rsync --verbose --recursive --update --times --omit-dir-times --include="*/" --include="*.?og" --include="*.c?v" --include="*.?oi" --include="*.?at" --include="*_spr*.bmp" --include="*.txt" --include="*.md" --include="*.sb" --include="*.info" --include="*.?nc" --include="*.bkp" --include="*.png" --exclude="*" ~/2214/VETSUISSE/ ~/anaklin04-f/VETSUISSE/
+folder='VETSUISSE/Laminitis'
+echo "2214 --> archive"
+rsync --verbose --recursive --times --update --omit-dir-times --prune-empty-dirs --include="*/" --exclude="*.png" --exclude="*.dcm" --exclude="*_rectmp.log" ~/2214/"$folder"/ ~/research_storage_uct/Archiv_Tape/"$folder"/
+#echo "2214 --> Elkes Drive"
+#rsync --verbose --recursive --times --update --omit-dir-times --prune-empty-dirs --include="*/" --exclude="*_rectmp.log" ~/2214/"$folder"/ ~/research-storage-SOMEWHERE/SOMEWHERE/
+echo "2214 (everything but projections) -> anaklin25 FastSSD"
+rsync --verbose --recursive --times --update --omit-dir-times --prune-empty-dirs --include="*/" --exclude="*.dcm" --exclude="*.?if" --exclude="*_rectmp.log" ~/2214/"$folder"/ /media/habi/Fast_SSD/"$folder"/
+#echo "2214 (everything but projections) -> anaklin04 FastSSD"
+#rsync --verbose --recursive --times --update --omit-dir-times --prune-empty-dirs --include="*/" --exclude="*.dcm" --exclude="*.?if" --exclude="*_rectmp.log" ~/2214/"$folder"/ ~/anaklin04-f/"$folder"/
+echo "Archive (logfiles) --> repository subfolder"
+rsync --verbose --recursive --times --update --omit-dir-times --prune-empty-dirs --include="*/" --include="*.?og" --include="*.?nc" --exclude="*_rectmp.log" --exclude="*" ~/research_storage_uct/Archiv_Tape/"$folder"/ ~/P/Documents/"$folder"/logfiles/
